@@ -19,10 +19,14 @@
   color: rgb(255, 255, 255);
 }
 .mavic-img {
-  transition: all 0.4s;
+  animation-name: mavic-off;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
 }
 .mavic:hover .mavic-img {
-  transform: translateY(-100%);
+  animation-name: mavic-on;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 .mavic::after,
@@ -31,19 +35,101 @@
   width: 300px;
   height: 300px;
   position: absolute;
-  transition: all 0.5s;
+  animation-duration: 1s;
 }
 .mavic::after {
   background-image: url(../img/iphone-front.png);
-  right: 20%;
-  transform: translate(0, 200%) rotate(30deg);
+  right: 21%;
+  transform: translate(0, 200%) rotate(20deg);
+  animation-name: front-off;
 }
 .mavic::before {
   background-image: url(../img/iphone-back.png);
-  left: 20%;
-  transform: translate(0, 200%) rotate(-30deg);
+  left: 21%;
+  transform: translate(0, 200%) rotate(-20deg);
+  animation-name: back-off;
 }
 .mavic:hover::after,
 .mavic:hover::before {
-  transform: translate(0, 0) rotate(0deg);
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+.mavic:hover::after {
+  animation-name: front-on;
+}
+.mavic:hover::before {
+  animation-name: back-on;
+}
+
+@keyframes mavic-on {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-200%);
+  }
+}
+@keyframes mavic-off {
+  0% {
+    transform: translateY(-200%);
+  }
+  60% {
+    transform: translateY(30px);
+  }
+  70% {
+    transform: translateY(-20px);
+  }
+  80% {
+    transform: translateY(15px);
+  }
+  90% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes front-on {
+  0% {
+    transform: translate(0, 200%) rotate(30deg);
+    right: 20%;
+  }
+  60% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    right: 31%;
+  }
+}
+@keyframes front-off {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(0, 200%) rotate(30deg);
+    right: 20%;
+  }
+}
+@keyframes back-on {
+  0% {
+    transform: translate(0, 200%) rotate(-30deg);
+    left: 20%;
+  }
+  60% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    left: 31%;
+  }
+}
+@keyframes back-off {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(0, 200%) rotate(-30deg);
+    left: 20%;
+  }
 }
